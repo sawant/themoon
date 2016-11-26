@@ -1,0 +1,8 @@
+<header>
+	<h1>Welcome to the Moon, <%= current_user.email %>!</h1>
+	<h2>We are using Rails <%= Rails.version %></h2>
+</header>
+<section>
+	<p>Home of the Moon's Dashboard</p>
+	<%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+</section>
