@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 gem 'devise'
 gem 'bower-rails'
+gem 'angular-rails-templates'
 gem 'faker'
 
 group :development, :test do
