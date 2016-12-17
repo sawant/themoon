@@ -1,5 +1,25 @@
 describe('CustomerSearchController', function() {
+    // Initialization
     describe('Initialization', function() {
+        var scope         = null,
+            controller    = null;
+
+        beforeEach(module('customers'));
+
+        beforeEach(
+            inject(function($controller, $rootScope) {
+                scope       = $rootScope.$new();
+                controller  = $controller('CustomerSearchController', {$scope: scope});
+            })
+        );
+
+        it("defaults to an empty customer list", function() {
+            expect(scope.customers).toEqualData([]);
+        });
+    });
+
+    // Fetching search results
+    describe("Fetching Search Results", function() {
         var scope         = null,
             controller    = null,
             httpBackend   = null,
@@ -18,7 +38,7 @@ describe('CustomerSearchController', function() {
                     email: "johnboy@bar.net",
                     username: "bobbyj"
                 },
-            ]
+            ];
 
         beforeEach(module('customers'));
 
@@ -33,10 +53,6 @@ describe('CustomerSearchController', function() {
         beforeEach(function() {
             httpBackend.when('GET', '/customers.json?keywords=bob&page=0')
                        .respond(serverResults);
-        });
-
-        it("defaults to an empty customer list", function() {
-            expect(scope.customers).toEqualData([]);
         });
 
         it("populates the customer list with the results", function() {
